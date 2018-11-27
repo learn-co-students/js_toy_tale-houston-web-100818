@@ -1,6 +1,10 @@
 const addBtn = document.querySelector('#new-toy-btn')
 const toyForm = document.querySelector('.container')
 const toyCollection = document.querySelector('#toy-collection')
+const newToySubmit = document.querySelector('.submit')
+const newToyName = document.querySelector('[name="name"]')
+const newToyImage = document.querySelector('[name="image"]')
+
 
 
 let addToy = false
@@ -22,7 +26,7 @@ const renderToyCollection = function(toys){
     const addToyCard = document.createElement('div')
     addToyCard.className = "card"
 
-    const addToyName = document.createElement('h1')
+    const addToyName = document.createElement('h2')
     addToyName.innerHTML = toy.name
 
     const addToyImage = document.createElement('img')
@@ -44,8 +48,16 @@ const renderToyCollection = function(toys){
   })
 }
 
+newToySubmit.addEventListener('click', function(e){
+  e.preventDefault()
+
+  createToy()
+})
+
 addBtn.addEventListener('click', () => {
   // hide & seek with the form
+  newToyName.value = ''
+  newToyImage.value = ''
   addToy = !addToy
   if (addToy) {
     toyForm.style.display = 'block'
@@ -54,6 +66,22 @@ addBtn.addEventListener('click', () => {
     toyForm.style.display = 'none'
   }
 })
+
+const createToy = function(){
+  fetch('http://localhost:3000/toys/', {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json"
+    },
+    body: JSON.stringify({
+      name: newToyName.value,
+      image: newToyImage.value,
+      likes: 0
+    })
+  })
+    .then( render )
+}
 
 render()
 
