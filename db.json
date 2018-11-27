@@ -4,7 +4,7 @@
       "id": 1,
       "name": "Woody",
       "image": "http://www.pngmart.com/files/3/Toy-Story-Woody-PNG-Photos.png",
-      "likes": 5
+      "likes": 8
     },
     {
       "id": 2,
@@ -47,6 +47,54 @@
       "name": "Little Green Men",
       "image": "http://www.pngmart.com/files/3/Toy-Story-Alien-PNG-File.png",
       "likes": -2
+    },
+    {
+      "name": "bear",
+      "image": "https://images-na.ssl-images-amazon.com/images/I/81QpshLNqeL._SL1500_.jpg",
+      "likes": "0",
+      "id": 9
+    },
+    {
+      "name": "ber2",
+      "image": "https://images-na.ssl-images-amazon.com/images/I/81QpshLNqeL._SL1500_.jpg",
+      "likes": "0",
+      "id": 10
+    },
+    {
+      "name": "bear3",
+      "image": "https://images-na.ssl-images-amazon.com/images/I/81QpshLNqeL._SL1500_.jpg",
+      "likes": "0",
+      "id": 11
+    },
+    {
+      "name": "BEAR",
+      "image": "https://images-na.ssl-images-amazon.com/images/I/81QpshLNqeL._SL1500_.jpg",
+      "likes": "0",
+      "id": 12
+    },
+    {
+      "name": "ALAN",
+      "image": "https://images-na.ssl-images-amazon.com/images/I/81QpshLNqeL._SL1500_.jpg",
+      "likes": "011111",
+      "id": 13
+    },
+    {
+      "name": "josh",
+      "image": "https://images-na.ssl-images-amazon.com/images/I/81QpshLNqeL._SL1500_.jpg",
+      "likes": "011111",
+      "id": 14
+    },
+    {
+      "name": "eddie",
+      "image": "https://images-na.ssl-images-amazon.com/images/I/81QpshLNqeL._SL1500_.jpg",
+      "likes": "011111",
+      "id": 15
+    },
+    {
+      "name": "dog",
+      "image": "https://images-na.ssl-images-amazon.com/images/I/81QpshLNqeL._SL1500_.jpg",
+      "likes": 5,
+      "id": 16
     }
   ]
 }
