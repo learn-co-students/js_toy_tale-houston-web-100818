@@ -10,7 +10,7 @@
       "id": 2,
       "name": "Buzz Lightyear",
       "image": "http://www.pngmart.com/files/6/Buzz-Lightyear-PNG-Transparent-Picture.png",
-      "likes": 8
+      "likes": 9
     },
     {
       "id": 3,
@@ -47,6 +47,12 @@
       "name": "Little Green Men",
       "image": "http://www.pngmart.com/files/3/Toy-Story-Alien-PNG-File.png",
       "likes": -1
+    },
+    {
+      "name": "Mr. Shark",
+      "image": "https://vignette.wikia.nocookie.net/pixar/images/5/58/Toystoryssaharkvb.jpg/revision/latest?cb=20100904193141",
+      "likes": 1,
+      "id": 9
     }
   ]
 }

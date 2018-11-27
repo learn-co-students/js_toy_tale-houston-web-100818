@@ -17,6 +17,21 @@ const likeToy = function(toy) {
   }).then (render)
 }
 
+const submitToy = function() {
+  fetch(`http://localhost:3000/toys/`,{
+    method: 'POST',
+    headers: {
+      'Content-Type':'application/json'
+    },
+    body: JSON.stringify({
+      name: toyForm.firstElementChild.name.value,
+      image: toyForm.firstElementChild.image.value,
+      likes: 0
+    })
+  }).then (render)
+  }
+
+
 // YOUR CODE HERE
 const render = function() {
   fetch('http://localhost:3000/toys')
@@ -54,6 +69,10 @@ addBtn.addEventListener('click', () => {
   if (addToy) {
     toyForm.style.display = 'block'
     // submit listener here
+    toyForm.addEventListener('submit', function(event) {
+      event.preventDefault()
+      submitToy()
+    })
   } else {
     toyForm.style.display = 'none'
   }
