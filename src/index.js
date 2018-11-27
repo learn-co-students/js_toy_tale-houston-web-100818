@@ -5,6 +5,7 @@ const qs = document.querySelector.bind(document)
 let toyCollection =  qs('#toy-collection')
 let addToy = false
 let currentToy;
+const submitButton = document.querySelector('#submit-button')
 
 // YOUR CODE HERE
 const render = function(){
@@ -30,6 +31,7 @@ const renderToys = function(toys){
     const toyLikes = document.createElement('p')
     const toyImage = document.createElement('img')
     const likeButton = document.createElement('button')
+    
 
     // setting html
     toyDiv.className = "card"
@@ -50,6 +52,7 @@ const renderToys = function(toys){
       updateToy()
     })
     
+    
     //append to document
     toyCollection.append(toyDiv)
     toyDiv.append(toyName)
@@ -57,7 +60,25 @@ const renderToys = function(toys){
     toyDiv.append(toyLikes)
     toyDiv.append(likeButton)
   })
-
+  
+  // create button event listener
+  addBtn.addEventListener('click', () => {
+    // hide & seek with the form
+    console.log('add button is working')
+    addToy = !addToy
+    if (addToy) {
+      toyForm.style.display = 'block'
+      // submit listener here
+      submitButton.addEventListener('click', function(e){
+        createToy()
+        addToy = false
+        render()
+        
+      })
+    } else {
+      toyForm.style.display = 'none'
+    }
+  })
 }
 
 const updateToy = function () {
@@ -74,18 +95,20 @@ const updateToy = function () {
 }
 
 const createToy = function(){
-  
+  fetch(`http://localhost:3000/toys/`,{
+    method: 'POST',
+    headers: {
+      'Content-Type':'application/json'
+    },
+    body: JSON.stringify({
+      name: document.querySelector('#create-toy-name').value,
+      image: document.querySelector('#create-toy-image-url').value,
+      likes: 0
+
+    })
+  }) 
+  .then(render)
 }
-addBtn.addEventListener('click', () => {
-  // hide & seek with the form
-  addToy = !addToy
-  if (addToy) {
-    toyForm.style.display = 'block'
-    // submit listener here
-  } else {
-    toyForm.style.display = 'none'
-  }
-})
 
 
 
