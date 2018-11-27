@@ -8,6 +8,7 @@ const newToyImage = document.querySelector('[name="image"]')
 
 
 let addToy = false
+let currentToy;
 
 const render = function(){
   fetch('http://localhost:3000/toys')
@@ -39,6 +40,11 @@ const renderToyCollection = function(toys){
     const addToyLikeButton = document.createElement('button')
     addToyLikeButton.className = "like-btn"
     addToyLikeButton.innerHTML = "Like <3"
+    addToyLikeButton.addEventListener('click', function(e){
+      currentToy = toy
+      currentToy.likes++
+      updateToy()
+    })
 
     toyCollection.append(addToyCard)
     addToyCard.append(addToyName)
@@ -50,7 +56,6 @@ const renderToyCollection = function(toys){
 
 newToySubmit.addEventListener('click', function(e){
   e.preventDefault()
-
   createToy()
 })
 
@@ -61,7 +66,6 @@ addBtn.addEventListener('click', () => {
   addToy = !addToy
   if (addToy) {
     toyForm.style.display = 'block'
-    // submit listener here
   } else {
     toyForm.style.display = 'none'
   }
@@ -78,6 +82,20 @@ const createToy = function(){
       name: newToyName.value,
       image: newToyImage.value,
       likes: 0
+    })
+  })
+    .then( render )
+}
+
+const updateToy = function(){
+  fetch(`http://localhost:3000/toys/${currentToy.id}`, {
+    method: 'PATCH',
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json"
+    },
+    body: JSON.stringify({
+      likes: currentToy.likes
     })
   })
     .then( render )
