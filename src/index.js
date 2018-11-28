@@ -1,9 +1,9 @@
 const addBtn = document.querySelector("#new-toy-btn");
 const toyForm = document.querySelector(".container");
 const toyCollection = document.querySelector("#toy-collection");
-const formName = document.querySelector(".name-field");
-const formImage = document.querySelector('[type="Image"]');
-const formSubmit = document.querySelector('[type="submit"]');
+const formName = document.querySelector('[name="name"]');
+const formImage = document.querySelector('[name="image"]');
+// const createToy = document.querySelector('[type="submit"]');
 let addToy = false;
 
 addBtn.addEventListener("click", () => {
@@ -12,12 +12,30 @@ addBtn.addEventListener("click", () => {
   if (addToy) {
     toyForm.style.display = "block";
     // submit listener here
+    toyForm.addEventListener("submit", function(event) {
+      event.preventDefault();
+      createToy();
+    });
   } else {
     toyForm.style.display = "none";
   }
 });
 
 // OR HERE!
+
+// This is a function that updates our data
+const likeToy = function(toy) {
+  fetch(`http://localhost:3000/toys/${toy.id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json"
+    },
+    body: JSON.stringify({
+      likes: toy.likes + 1
+    })
+  }).then(fetchData); //or (render)
+};
 
 // This is a function that fetches our data -(render) function
 const fetchData = function() {
@@ -32,6 +50,7 @@ const fetchData = function() {
 
 // This will render the toys we get from the Json data
 const renderToys = function(toys) {
+  toyCollection.innerHTML = ``;
   // This takes the data from toys, makes it so we can access each one individually (in this instance, it's in the word "toy" and then have access to it's unique attributes)
   toys.forEach(function(toy) {
     const toyName = document.createElement("h2");
@@ -80,29 +99,12 @@ const createToy = function() {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      name: ".name-field".value,
-      image: ".image-field".value,
+      name: formName.value,
+      image: formImage.value,
       likes: 0
     })
   }).then(fetchData);
 };
-
-// This is a function that updates our data
-const likeToy = function(toy) {
-  fetch(`http://localhost:3000/toys/${toy.id}`, {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json"
-    },
-    body: JSON.stringify({
-      likes: toy.likes + 1
-    })
-  }).then(fetchData); //or (render)
-};
-
-submitToy.addEventListener('click', (e) => {
-  e.preventDefault();
 
 // This invokes our fetch function
 fetchData();
