@@ -54,7 +54,6 @@ const renderToy = function(toy) {
   likeButton.addEventListener('click', function() {
     toy.likes++
     updateToy(toy)
-    console.log(toy)
   })
 }
 
@@ -65,7 +64,7 @@ const createToy = function() {
     image: toyData[1].value,
     likes: 0
   }
-  
+
   toys.push(toy)
 
   fetch('http://localhost:3000/toys', {
